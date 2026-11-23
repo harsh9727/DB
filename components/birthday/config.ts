@@ -14,6 +14,7 @@ export const BIRTHDAY_CONFIG: BirthdayExperienceConfig = {
     welcomeBackground: '/images/welcome-bg.jpg',
     welcomeVideo: '/videos/birthday-background.mp4',
     romanticPhoto: '/images/romantic-photo-1.jpg',
+    cupcakeImage: '/images/cupcake.png',
   },
 };
 

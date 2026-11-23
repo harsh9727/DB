@@ -99,14 +99,14 @@ export function WelcomeScreen({ onNext, hasNextStep = false }: WelcomeScreenProp
         initial={{ opacity: 0, scale: 0.9, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="glass-romantic-card relative z-20 mx-auto w-full max-w-2xl rounded-3xl p-6 sm:p-12 text-center shadow-2xl"
+        className="glass-romantic-card relative z-20 mx-auto w-full max-w-2xl rounded-3xl px-8 sm:px-12 py-7 sm:py-9 text-center shadow-2xl"
       >
         {/* Ambient decorative top badge */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-champagne/30 bg-burgundy-deep/70 px-4 py-1.5 text-xs sm:text-sm font-medium text-champagne shadow-inner"
+          className="mx-auto mb-4 sm:mb-5 inline-flex items-center gap-2 rounded-full border border-champagne/30 bg-burgundy-deep/70 px-4.5 py-1.5 text-xs sm:text-sm font-medium text-champagne shadow-inner"
         >
           <Sparkles className="h-3.5 w-3.5 text-champagne-gold animate-spin-slow" />
           <span>A Dedicated Celebration For You</span>
@@ -118,7 +118,7 @@ export function WelcomeScreen({ onNext, hasNextStep = false }: WelcomeScreenProp
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
-          className="mb-6 font-playfair italic text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-normal text-cream-50 leading-[1.45] sm:leading-[1.52] lg:leading-[1.58] text-glow"
+          className="mb-4 sm:mb-5 font-playfair italic text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-normal text-cream-50 leading-[1.20] sm:leading-[1.22] text-glow"
         >
           {BIRTHDAY_CONFIG.welcomeMessage}
         </motion.h1>
@@ -128,11 +128,10 @@ export function WelcomeScreen({ onNext, hasNextStep = false }: WelcomeScreenProp
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ delay: 0.45, duration: 0.7 }}
-          className="my-6 flex items-center justify-center gap-3"
+          className="my-4 sm:my-5 flex items-center justify-center gap-3"
         >
           <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-rose-400/50 to-rose-400" />
           <Heart className="h-5 w-5 text-rose-400 animate-heart-pulse drop-shadow-[0_0_8px_rgba(244,63,94,0.6)]" fill="currentColor" />
-          <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent via-rose-400/50 to-rose-400" />
           <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent via-rose-400/50 to-rose-400" />
         </motion.div>
 
@@ -151,13 +150,13 @@ export function WelcomeScreen({ onNext, hasNextStep = false }: WelcomeScreenProp
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 0.7 }}
-          className="mt-8 sm:mt-10 flex flex-col items-center"
+          className="mt-6 sm:mt-7 flex flex-col items-center"
         >
           <motion.button
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             onClick={handleNextClick}
-            className="btn-romantic group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 sm:px-10 py-3.5 sm:py-4 text-base sm:text-lg font-semibold text-white shadow-xl cursor-pointer"
+            className="btn-romantic group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3 sm:py-3.5 text-base sm:text-lg font-semibold text-white shadow-xl cursor-pointer"
           >
             <span className="relative z-10 flex items-center gap-2">
               Let&apos;s Begin Our Journey ❤️

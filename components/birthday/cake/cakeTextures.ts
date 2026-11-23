@@ -3,9 +3,9 @@
 import * as THREE from 'three';
 
 /**
- * Generates an appetizing, realistic procedural Dark Chocolate Sponge & Ganache interior texture
+ * Generates an appetizing, realistic procedural Golden Vanilla Sponge & Strawberry Cream interior texture
  */
-export function createChocolateCakeInteriorTexture(): THREE.CanvasTexture {
+export function createVanillaCakeInteriorTexture(): THREE.CanvasTexture {
   const canvas = document.createElement('canvas');
   canvas.width = 512;
   canvas.height = 512;
@@ -15,87 +15,76 @@ export function createChocolateCakeInteriorTexture(): THREE.CanvasTexture {
     return new THREE.CanvasTexture(canvas);
   }
 
-  // Deep moist dark chocolate sponge base
-  ctx.fillStyle = '#26140e';
+  // Golden moist vanilla sponge cake base
+  ctx.fillStyle = '#fcecc4';
   ctx.fillRect(0, 0, 512, 512);
 
-  // Realistic moist chocolate sponge crumb (fine pores, cocoa cake texture)
-  for (let i = 0; i < 5000; i++) {
+  // Realistic moist vanilla sponge crumb texture (fine pores, golden crumb)
+  for (let i = 0; i < 4500; i++) {
     const x = Math.random() * 512;
     const y = Math.random() * 512;
-    const r = Math.random() * 2.0 + 0.4;
+    const r = Math.random() * 2.2 + 0.3;
     const tone = Math.random();
-    if (tone > 0.6) {
-      ctx.fillStyle = 'rgba(68, 38, 26, 0.7)'; // Lighter cocoa crumb
+    if (tone > 0.65) {
+      ctx.fillStyle = 'rgba(235, 195, 130, 0.75)'; // Golden baked crumb
     } else if (tone > 0.25) {
-      ctx.fillStyle = 'rgba(24, 11, 7, 0.85)'; // Deep cocoa pore
+      ctx.fillStyle = 'rgba(215, 170, 105, 0.6)'; // Sponge pore
+    } else if (tone > 0.08) {
+      ctx.fillStyle = 'rgba(255, 250, 235, 0.85)'; // Moist aerated crumb
     } else {
-      ctx.fillStyle = 'rgba(110, 62, 42, 0.4)'; // Warm chocolate highlight
+      ctx.fillStyle = 'rgba(90, 50, 20, 0.4)'; // Real vanilla bean speck
+      const beanR = Math.random() * 0.9 + 0.2;
+      ctx.beginPath();
+      ctx.arc(x, y, beanR, 0, Math.PI * 2);
+      ctx.fill();
+      continue;
     }
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  // Draw rich silky cream & chocolate ganache layers
-  const drawCreamLayer = (y: number, height: number, isVanilla: boolean) => {
+  // Strawberry jam & sweet vanilla buttercream filling layers
+  const drawCreamLayer = (y: number, height: number, isStrawberry: boolean) => {
     const grad = ctx.createLinearGradient(0, y, 0, y + height);
-    if (isVanilla) {
-      grad.addColorStop(0, '#fffbf0');
-      grad.addColorStop(0.5, '#f5ecd5');
-      grad.addColorStop(1, '#fffbf0');
+    if (isStrawberry) {
+      grad.addColorStop(0, '#ff758f');
+      grad.addColorStop(0.5, '#e03a65');
+      grad.addColorStop(1, '#ff758f');
     } else {
-      // Dark chocolate fudge ganache filling
-      grad.addColorStop(0, '#1c0d08');
-      grad.addColorStop(0.5, '#2e150d');
-      grad.addColorStop(1, '#1c0d08');
+      grad.addColorStop(0, '#ffffff');
+      grad.addColorStop(0.5, '#fff7ed');
+      grad.addColorStop(1, '#ffffff');
     }
     ctx.fillStyle = grad;
     ctx.fillRect(0, y, 512, height);
 
     // Subtle edge shading
-    ctx.fillStyle = 'rgba(10, 5, 3, 0.4)';
-    ctx.fillRect(0, y - 2, 512, 2);
-    ctx.fillRect(0, y + height, 512, 2);
+    ctx.fillStyle = isStrawberry ? 'rgba(180, 20, 50, 0.25)' : 'rgba(220, 180, 130, 0.25)';
+    ctx.fillRect(0, y - 1, 512, 1);
+    ctx.fillRect(0, y + height, 512, 1);
   };
 
-  // Draw raspberry / strawberry jam ripple inside the cake
-  const drawFruitJamRipple = (y: number) => {
-    ctx.fillStyle = 'rgba(195, 20, 55, 0.9)';
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    for (let x = 0; x <= 512; x += 25) {
-      const wave = Math.sin(x * 0.06) * 3.5;
-      ctx.lineTo(x, y + wave);
-    }
-    ctx.lineTo(512, y + 5);
-    ctx.lineTo(0, y + 5);
-    ctx.closePath();
-    ctx.fill();
-  };
+  // Layer 1: Strawberry compote ribbon
+  drawCreamLayer(160, 16, true);
 
-  // Layer 1: Vanilla mousse cream layer
-  drawCreamLayer(150, 22, true);
-  drawFruitJamRipple(160);
+  // Layer 2: Sweet white vanilla cream filling
+  drawCreamLayer(250, 18, false);
 
-  // Layer 2: Silky dark chocolate fudge layer
-  drawCreamLayer(240, 18, false);
+  // Layer 3: Strawberry compote ribbon
+  drawCreamLayer(340, 16, true);
 
-  // Layer 3: Vanilla mousse cream layer
-  drawCreamLayer(330, 22, true);
-  drawFruitJamRipple(340);
-
-  // Top thick glossy chocolate ganache coating
-  const topGrad = ctx.createLinearGradient(0, 0, 0, 32);
-  topGrad.addColorStop(0, '#150a06');
-  topGrad.addColorStop(0.7, '#241009');
-  topGrad.addColorStop(1, '#150a06');
+  // Top layer: Silky blush pink buttercream coating
+  const topGrad = ctx.createLinearGradient(0, 0, 0, 30);
+  topGrad.addColorStop(0, '#fcdce4');
+  topGrad.addColorStop(0.7, '#f9cad6');
+  topGrad.addColorStop(1, '#fcdce4');
   ctx.fillStyle = topGrad;
-  ctx.fillRect(0, 0, 512, 32);
+  ctx.fillRect(0, 0, 512, 30);
 
-  // Glossy highlight line on top edge
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-  ctx.fillRect(0, 2, 512, 3);
+  // Glossy highlight on top edge
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+  ctx.fillRect(0, 2, 512, 2);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.wrapS = THREE.RepeatWrapping;
@@ -103,10 +92,13 @@ export function createChocolateCakeInteriorTexture(): THREE.CanvasTexture {
   return texture;
 }
 
+// Backward compatibility alias
+export const createChocolateCakeInteriorTexture = createVanillaCakeInteriorTexture;
+
 /**
- * Generates a procedural ganache ripple / frosting bump map
+ * Generates a procedural smooth buttercream swirl ripple bump map
  */
-export function createChocolateGanacheBumpMap(): THREE.CanvasTexture {
+export function createButtercreamBumpMap(): THREE.CanvasTexture {
   const canvas = document.createElement('canvas');
   canvas.width = 256;
   canvas.height = 256;
@@ -119,13 +111,13 @@ export function createChocolateGanacheBumpMap(): THREE.CanvasTexture {
   ctx.fillStyle = '#808080';
   ctx.fillRect(0, 0, 256, 256);
 
-  // Soft smooth ganache waves
-  for (let i = 0; i < 150; i++) {
+  // Soft smooth buttercream waves
+  for (let i = 0; i < 120; i++) {
     const x = Math.random() * 256;
     const y = Math.random() * 256;
-    const r = Math.random() * 35 + 15;
+    const r = Math.random() * 30 + 12;
     const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
-    grad.addColorStop(0, 'rgba(255, 255, 255, 0.12)');
+    grad.addColorStop(0, 'rgba(255, 255, 255, 0.10)');
     grad.addColorStop(1, 'rgba(128, 128, 128, 0)');
     ctx.fillStyle = grad;
     ctx.beginPath();
@@ -139,3 +131,6 @@ export function createChocolateGanacheBumpMap(): THREE.CanvasTexture {
   texture.repeat.set(3, 2);
   return texture;
 }
+
+// Backward compatibility alias
+export const createChocolateGanacheBumpMap = createButtercreamBumpMap;

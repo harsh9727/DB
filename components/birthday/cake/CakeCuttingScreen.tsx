@@ -2,6 +2,7 @@
 
 import React, { useState, Suspense } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import confetti from 'canvas-confetti';
 import { CakeStage } from './CakeCanvas';
 import { CakeOverlayUI } from './CakeOverlayUI';
@@ -14,12 +15,18 @@ const CakeCanvas = dynamic(
     ssr: false,
     loading: () => (
       <div className="flex h-full w-full flex-col items-center justify-center text-center">
-        <div className="relative mb-4 flex h-16 w-16 items-center justify-center">
+        <div className="relative mb-4 flex h-20 w-20 items-center justify-center">
           <div className="absolute h-full w-full rounded-full border-2 border-rose-400/30 border-t-rose-500 animate-spin" />
-          <span className="text-xl">🧁</span>
+          <Image
+            src="/images/cupcake-transparent.png"
+            alt="Cupcake"
+            width={46}
+            height={46}
+            className="object-contain"
+          />
         </div>
         <p className="font-serif text-sm italic text-rose-200/80 animate-pulse">
-          Baking your 3D birthday cupcake with love... ✨
+          Baking your birthday cupcake with love... ✨
         </p>
       </div>
     ),
@@ -97,6 +104,7 @@ export function CakeCuttingScreen({ onNext, hasNextStep = false }: CakeCuttingSc
         <CakeCanvas
           stage={stage}
           onCutComplete={handleCutComplete}
+          onKnifePickedUp={handlePickUpKnife}
         />
       </Suspense>
 
@@ -114,8 +122,14 @@ export function CakeCuttingScreen({ onNext, hasNextStep = false }: CakeCuttingSc
       {showNextModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
           <div className="glass-romantic-card relative max-w-md w-full rounded-3xl p-6 sm:p-8 text-center shadow-2xl border border-rose-400/40">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-400 text-white shadow-lg shadow-rose-500/30">
-              <span className="text-2xl">🧁</span>
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-tr from-rose-500/30 to-pink-400/20 shadow-lg shadow-rose-500/20 border border-rose-400/30 p-1">
+              <Image
+                src="/images/cupcake-transparent.png"
+                alt="Birthday Cupcake"
+                width={50}
+                height={50}
+                className="object-contain"
+              />
             </div>
             <h3 className="text-xl sm:text-2xl font-serif font-bold text-cream-50 mb-2">
               The Cupcake Is Cut! ❤️

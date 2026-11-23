@@ -28,5 +28,6 @@ export interface BirthdayExperienceConfig {
     welcomeBackground: string;
     welcomeVideo?: string;
     romanticPhoto?: string;
+    cupcakeImage?: string;
   };
 }

@@ -24,7 +24,7 @@ export function CakeOverlayUI({
   return (
     <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-between p-4 sm:p-8">
       {/* Top Floating Instruction Badge */}
-      <div className="flex justify-center pt-10 sm:pt-14">
+      <div className="flex justify-center pt-8 sm:pt-10">
         <AnimatePresence mode="wait">
           {stage === 'UNLIT' && (
             <motion.div
@@ -80,7 +80,7 @@ export function CakeOverlayUI({
       </div>
 
       {/* Bottom Interactive Controls Panel */}
-      <div className="flex flex-col items-center pb-6 sm:pb-10">
+      <div className="flex flex-col items-center pb-8 sm:pb-12 md:pb-14">
         <AnimatePresence mode="wait">
           {/* Interaction 1: Light the Sparkler */}
           {stage === 'UNLIT' && (
@@ -92,7 +92,7 @@ export function CakeOverlayUI({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.96 }}
               onClick={onLightCandles}
-              className="pointer-events-auto btn-romantic group relative flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3.5 sm:py-4 text-base sm:text-lg font-semibold text-white shadow-2xl cursor-pointer"
+              className="pointer-events-auto btn-romantic group relative flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3 sm:py-3.5 text-base sm:text-lg font-semibold text-white shadow-2xl cursor-pointer"
             >
               <Sparkles className="h-5 w-5 text-champagne-gold animate-sparkle" />
               <span>Light the Sparkler ✨</span>
@@ -109,7 +109,7 @@ export function CakeOverlayUI({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.96 }}
               onClick={onBlowCandles}
-              className="pointer-events-auto btn-romantic group relative flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3.5 sm:py-4 text-base sm:text-lg font-semibold text-white shadow-2xl cursor-pointer"
+              className="pointer-events-auto btn-romantic group relative flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3 sm:py-3.5 text-base sm:text-lg font-semibold text-white shadow-2xl cursor-pointer"
             >
               <Wind className="h-5 w-5 text-rose-200" />
               <span>Make a Wish & Blow the Sparkler 💗</span>
@@ -123,13 +123,13 @@ export function CakeOverlayUI({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="flex flex-col items-center gap-2"
+              className="flex flex-col items-center gap-1.5"
             >
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
                 onClick={onPickUpKnife}
-                className="pointer-events-auto btn-romantic group relative flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3.5 sm:py-4 text-base sm:text-lg font-semibold text-white shadow-2xl cursor-pointer"
+                className="pointer-events-auto btn-romantic group relative flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3 sm:py-3.5 text-base sm:text-lg font-semibold text-white shadow-2xl cursor-pointer"
               >
                 <span>Pick Up the Cake Knife 🎂</span>
               </motion.button>
@@ -146,9 +146,9 @@ export function CakeOverlayUI({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="flex flex-col items-center gap-2"
+              className="flex flex-col items-center gap-1.5"
             >
-              <div className="pointer-events-auto glass-romantic flex items-center gap-3 rounded-full px-7 py-3 border border-rose-400/40">
+              <div className="pointer-events-auto glass-romantic flex items-center gap-3 rounded-full px-7 py-2.5 sm:py-3 border border-rose-400/40">
                 <span className="text-sm sm:text-base font-semibold text-rose-100">
                   Drag Down to Cut the Cupcake 🧁
                 </span>
