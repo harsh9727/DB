@@ -1,0 +1,19 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "mylove",
+    "nimg",
+    "playsinline",
+    "clsx",
+    "lucide",
+    "glassmorphism",
+    "confetti"
+  ],
+  "ignorePaths": [
+    ".next/**",
+    "node_modules/**",
+    "pnpm-lock.yaml",
+    "package.json"
+  ]
+}
