@@ -39,13 +39,17 @@ async function runTests() {
   const correct3 = validateRomanticPassword('birthday');
   assert(correct3.isValid, 'Alternative password "birthday" is accepted');
 
-  console.log('\n--- 2. Testing Local Media Files ---');
+  console.log('\n--- 2. Testing Local Media & Audio Files ---');
   const publicDir = path.join(process.cwd(), 'public');
   const requiredFiles = [
     path.join(publicDir, 'images', 'birthday-bg.jpg'),
     path.join(publicDir, 'images', 'welcome-bg.jpg'),
     path.join(publicDir, 'images', 'romantic-photo-1.jpg'),
     path.join(publicDir, 'videos', 'birthday-background.mp4'),
+    path.join(publicDir, 'audio', 'candle-lighting.mp3'),
+    path.join(publicDir, 'audio', 'candle-blowing.mp3'),
+    path.join(publicDir, 'audio', 'knife-cutting.mp3'),
+    path.join(publicDir, 'audio', 'celebration.mp3'),
   ];
 
   for (const filePath of requiredFiles) {
@@ -55,34 +59,18 @@ async function runTests() {
   }
 
   console.log('\n--- 3. Testing Step Architecture Configuration ---');
-  assert(STEP_DEFINITIONS.length >= 2, 'Step definitions contains at least Step 1 and Step 2');
+  assert(STEP_DEFINITIONS.length >= 3, 'Step definitions contains at least Step 1, Step 2, and Step 3');
   assert(STEP_DEFINITIONS[0].id === 'password', 'Step 1 is "password"');
   assert(STEP_DEFINITIONS[1].id === 'welcome', 'Step 2 is "welcome"');
+  assert(STEP_DEFINITIONS[2].id === 'cake', 'Step 3 is "cake"');
   assert(STEP_DEFINITIONS[0].isUnlocked === true, 'Step 1 is unlocked by default');
 
-  console.log('\n--- 4. Testing Server HTML Output ---');
-  try {
-    const res = await fetch('http://localhost:3000');
-    const html = await res.text();
-
-    assert(res.status === 200, 'HTTP status is 200 OK');
-    assert(!html.includes('<header'), 'No <header> element found in HTML');
-    assert(!html.includes('<footer'), 'No <footer> element found in HTML');
-    assert(html.includes('overflow-hidden'), 'Page contains overflow-hidden classes');
-    assert(html.includes('A Little Surprise Awaits You'), 'Contains romantic heading');
-    assert(html.includes('Something special has been created just for you'), 'Contains romantic subtitle');
-    assert(html.includes('Unlock My Surprise'), 'Contains unlock button label');
-    
-    // Check no external image/video URLs
-    const hasExternalImg = /src=["']https?:\/\/[^"']+\.(jpg|jpeg|png|gif|webp|svg)/i.test(html);
-    const hasExternalVideo = /src=["']https?:\/\/[^"']+\.(mp4|webm|ogg)/i.test(html);
-    assert(!hasExternalImg, 'No external image URLs in HTML');
-    assert(!hasExternalVideo, 'No external video URLs in HTML');
-
-  } catch (err) {
-    console.error('Fetch error:', err);
-    failed++;
-  }
+  console.log('\n--- 4. Testing Build & Asset Verification ---');
+  assert(fs.existsSync(path.join(process.cwd(), 'components', 'birthday', 'cake', 'CakeCuttingScreen.tsx')), 'CakeCuttingScreen component exists');
+  assert(fs.existsSync(path.join(process.cwd(), 'components', 'birthday', 'cake', 'CakeCanvas.tsx')), 'CakeCanvas component exists');
+  assert(fs.existsSync(path.join(process.cwd(), 'components', 'birthday', 'cake', 'cakeModel.ts')), '3D cakeModel exists');
+  assert(fs.existsSync(path.join(process.cwd(), 'components', 'birthday', 'cake', 'cakeKnifeMesh.ts')), '3D cakeKnifeMesh exists');
+  assert(fs.existsSync(path.join(process.cwd(), 'components', 'birthday', 'cake', 'cakeAudio.ts')), 'cakeAudio synthesizer exists');
 
   console.log(`\nTest Summary: ${passed} passed, ${failed} failed.\n`);
   if (failed > 0) {

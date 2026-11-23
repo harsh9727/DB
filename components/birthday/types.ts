@@ -1,6 +1,7 @@
 export type StepId = 
   | 'password' 
   | 'welcome' 
+  | 'cake'
   | 'message' 
   | 'memories' 
   | 'letter' 

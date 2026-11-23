@@ -38,10 +38,17 @@ export const STEP_DEFINITIONS: StepDefinition[] = [
     subtitle: 'Welcome to your journey',
     isUnlocked: false,
   },
+  {
+    id: 'cake',
+    index: 2,
+    title: 'Birthday Cupcake',
+    subtitle: 'Make a wish & cut the cupcake',
+    isUnlocked: false,
+  },
   // Future architecture placeholders ready to be enabled:
   // {
   //   id: 'message',
-  //   index: 2,
+  //   index: 3,
   //   title: 'Heartfelt Message',
   //   subtitle: 'Words straight from the heart',
   //   isUnlocked: false,

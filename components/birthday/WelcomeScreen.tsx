@@ -133,6 +133,7 @@ export function WelcomeScreen({ onNext, hasNextStep = false }: WelcomeScreenProp
           <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-rose-400/50 to-rose-400" />
           <Heart className="h-5 w-5 text-rose-400 animate-heart-pulse drop-shadow-[0_0_8px_rgba(244,63,94,0.6)]" fill="currentColor" />
           <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent via-rose-400/50 to-rose-400" />
+          <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent via-rose-400/50 to-rose-400" />
         </motion.div>
 
         {/* Emotional Subtitle */}
