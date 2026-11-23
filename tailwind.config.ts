@@ -44,9 +44,11 @@ const config: Config = {
         }
       },
       fontFamily: {
-        romantic: ['var(--font-romantic)', 'cursive', 'serif'],
-        serif: ['var(--font-cormorant)', 'Playfair Display', 'Georgia', 'serif'],
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        romantic: ['"Great Vibes"', '"Dancing Script"', 'cursive', 'serif'],
+        playfair: ['"Playfair Display"', 'Georgia', 'serif'],
+        cormorant: ['"Cormorant Garamond"', 'Garamond', 'serif'],
+        serif: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans: ['system-ui', '-apple-system', 'sans-serif'],
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

@@ -71,9 +71,8 @@ export function WelcomeScreen({ onNext, hasNextStep = false }: WelcomeScreenProp
             playsInline
             onLoadedData={() => setVideoLoaded(true)}
             onError={() => setVideoError(true)}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
-              videoLoaded ? 'opacity-35 scale-105' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-35 scale-105' : 'opacity-0'
+              }`}
           />
         )}
 
@@ -119,7 +118,7 @@ export function WelcomeScreen({ onNext, hasNextStep = false }: WelcomeScreenProp
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
-          className="mb-4 font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cream-50 leading-[1.15] text-glow"
+          className="mb-6 font-playfair italic text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-normal text-cream-50 leading-[1.45] sm:leading-[1.52] lg:leading-[1.58] text-glow"
         >
           {BIRTHDAY_CONFIG.welcomeMessage}
         </motion.h1>
@@ -132,7 +131,7 @@ export function WelcomeScreen({ onNext, hasNextStep = false }: WelcomeScreenProp
           className="my-6 flex items-center justify-center gap-3"
         >
           <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-rose-400/50 to-rose-400" />
-          <Heart className="h-5 w-5 text-rose-400 animate-heart-pulse" fill="currentColor" />
+          <Heart className="h-5 w-5 text-rose-400 animate-heart-pulse drop-shadow-[0_0_8px_rgba(244,63,94,0.6)]" fill="currentColor" />
           <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent via-rose-400/50 to-rose-400" />
         </motion.div>
 
