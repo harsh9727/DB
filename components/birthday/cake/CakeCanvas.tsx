@@ -99,21 +99,7 @@ export function CakeCanvas({
     knife.visible = stage === 'BLOWN' || stage === 'KNIFE_READY' || stage === 'CUTTING' || stage === 'CELEBRATION';
     scene.add(knife);
 
-    // 5. Interactive Cutting Guide Line Mesh (soft glowing guideline)
-    const cutLineGeom = new THREE.PlaneGeometry(1.35, 0.02);
-    const cutLineMat = new THREE.MeshBasicMaterial({
-      color: 0xff758f,
-      transparent: true,
-      opacity: 0,
-      side: THREE.DoubleSide,
-    });
-    const cutLineMesh = new THREE.Mesh(cutLineGeom, cutLineMat);
-    cutLineMesh.rotation.x = -Math.PI / 2;
-    cutLineMesh.rotation.z = 0.24;
-    cutLineMesh.position.set(0.13, 0.56, 0.16);
-    scene.add(cutLineMesh);
-
-    // 6. Pointer Tracking & Knife State
+    // 5. Pointer Tracking & Knife State
     const pointer = new THREE.Vector2(0, 0);
     const targetKnifePos = new THREE.Vector3().copy(restingKnifePos);
     const targetKnifeQuat = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, Math.PI / 2, 'YXZ'));
@@ -228,18 +214,15 @@ export function CakeCanvas({
 
           targetKnifePos.set(cutX, cutY, cutZ);
           targetKnifeQuat.setFromEuler(new THREE.Euler(Math.PI * 0.35, Math.PI * 0.12, -Math.PI * 0.18));
-          cutLineMat.opacity = THREE.MathUtils.lerp(cutLineMat.opacity, 0.85, delta * 8);
         } else {
           // Hovering ready above the user's cupcake apex
           targetKnifePos.set(0.18, 1.34 + Math.sin(time * 3) * 0.025, 0.30);
           targetKnifeQuat.setFromEuler(new THREE.Euler(Math.PI * 0.30, Math.PI * 0.10, -Math.PI * 0.15));
-          cutLineMat.opacity = THREE.MathUtils.lerp(cutLineMat.opacity, 0.75, delta * 6);
         }
       } else if (currentStage === 'CELEBRATION' || cutFinished) {
         // Slice cut complete: knife rests cleanly above the saucer to the side (never penetrating the dish)
         targetKnifePos.set(0.96, 0.06, 0.28);
         targetKnifeQuat.setFromEuler(new THREE.Euler(-Math.PI / 12, -Math.PI / 4, 0));
-        cutLineMat.opacity = THREE.MathUtils.lerp(cutLineMat.opacity, 0, delta * 5);
       } else if (currentStage === 'BLOWN') {
         // "Pick Up the Cake Knife" screen:
         // Positioned cleanly ABOVE the pink dish (never clipping or going inside the dish),
@@ -252,12 +235,10 @@ export function CakeCanvas({
         const spinAngle = time * 2.2;
         const verticalEuler = new THREE.Euler(0, spinAngle, Math.PI / 2, 'YXZ');
         targetKnifeQuat.setFromEuler(verticalEuler);
-        cutLineMat.opacity = THREE.MathUtils.lerp(cutLineMat.opacity, 0, delta * 5);
       } else {
         // UNLIT, LIT: Knife is strictly hidden and placed off-screen
         targetKnifePos.set(4.0, -10.0, 0);
         knife.position.copy(targetKnifePos);
-        cutLineMat.opacity = 0;
       }
 
       knife.position.lerp(targetKnifePos, delta * 8);
