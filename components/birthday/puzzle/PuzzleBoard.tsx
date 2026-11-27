@@ -124,20 +124,12 @@ export const PuzzleBoard = React.forwardRef<HTMLDivElement, PuzzleBoardProps>(
 
           {/* Inner Photo Mat / Bevel Frame */}
           <div className="relative rounded-xl sm:rounded-2xl p-0.5 sm:p-1 bg-[#efe7dc] shadow-[inset_0_2px_6px_rgba(0,0,0,0.2)] border border-neutral-300/80">
-            {/* Inner 3x3 Puzzle Board Grid */}
+            {/* Inner 3x3 Puzzle Board Grid (Clean canvas without blur hint image) */}
             <div
               ref={ref}
               data-puzzle-board="true"
-              className="relative grid grid-cols-3 grid-rows-3 gap-1 sm:gap-1.5 p-1 rounded-lg sm:rounded-xl bg-[#fdfbf9] aspect-[4/3] w-[290px] sm:w-[360px] md:w-[410px] overflow-hidden"
-              style={{
-                backgroundImage: `url("${photoUrl}")`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
+              className="relative grid grid-cols-3 grid-rows-3 gap-1 sm:gap-1.5 p-1 rounded-lg sm:rounded-xl bg-[#faf6f0] aspect-[4/3] w-[290px] sm:w-[360px] md:w-[410px] overflow-hidden shadow-inner"
             >
-            {/* Faint Watermark & Puzzle Cut Guides on empty board */}
-            <div className="pointer-events-none absolute inset-0 bg-[#f7f2ea]/85 backdrop-blur-[1px]" />
-
             {/* 9 Puzzle Slots */}
             {slots.map((slot) => {
               const placedPiece = slot.placedPieceId !== null ? pieces[slot.placedPieceId] : null;
@@ -152,8 +144,8 @@ export const PuzzleBoard = React.forwardRef<HTMLDivElement, PuzzleBoardProps>(
                     placedPiece
                       ? 'shadow-sm z-10'
                       : isHovered
-                      ? 'border-2 border-rose-500 bg-rose-400/35 shadow-[0_0_14px_rgba(244,63,94,0.6)] scale-[1.03] z-20'
-                      : 'border border-dashed border-rose-300/40 bg-white/40 hover:border-rose-400/60 hover:bg-rose-100/40 cursor-pointer'
+                      ? 'border-2 border-rose-500 bg-rose-400/30 shadow-[0_0_14px_rgba(244,63,94,0.5)] scale-[1.03] z-20'
+                      : 'border border-dashed border-rose-300/60 bg-white/80 hover:border-rose-400/80 hover:bg-rose-50/70 cursor-pointer shadow-[inset_0_1px_3px_rgba(0,0,0,0.04)]'
                   }`}
                 >
                   {placedPiece ? (
@@ -165,10 +157,10 @@ export const PuzzleBoard = React.forwardRef<HTMLDivElement, PuzzleBoardProps>(
                       className="h-full w-full rounded-md"
                     />
                   ) : (
-                    /* Subtle watermark indicator */
-                    <div className="pointer-events-none flex flex-col items-center justify-center opacity-40">
+                    /* Clean slot number & heart watermark */
+                    <div className="pointer-events-none flex flex-col items-center justify-center opacity-45">
                       <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-rose-500" />
-                      <span className="text-[9px] font-mono font-bold text-rose-800/70">
+                      <span className="text-[10px] font-mono font-bold text-rose-800/80 mt-0.5">
                         {slot.index + 1}
                       </span>
                     </div>
