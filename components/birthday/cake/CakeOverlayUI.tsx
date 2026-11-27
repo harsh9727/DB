@@ -10,6 +10,7 @@ interface CakeOverlayUIProps {
   onLightCandles: () => void;
   onBlowCandles: () => void;
   onPickUpKnife: () => void;
+  onCutCake?: () => void;
   onNextStep?: () => void;
   hasNextStep?: boolean;
 }
@@ -19,6 +20,7 @@ export function CakeOverlayUI({
   onLightCandles,
   onBlowCandles,
   onPickUpKnife,
+  onCutCake,
   onNextStep,
 }: CakeOverlayUIProps) {
   return (
@@ -148,13 +150,17 @@ export function CakeOverlayUI({
               exit={{ opacity: 0, y: 20 }}
               className="flex flex-col items-center gap-1.5"
             >
-              <div className="pointer-events-auto glass-romantic flex items-center gap-3 rounded-full px-7 py-2.5 sm:py-3 border border-rose-400/40">
-                <span className="text-sm sm:text-base font-semibold text-rose-100">
-                  Drag Down to Cut the Cupcake 🧁
-                </span>
-              </div>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                onClick={onCutCake}
+                className="pointer-events-auto btn-romantic group relative flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3 sm:py-3.5 text-base sm:text-lg font-semibold text-white shadow-2xl cursor-pointer"
+              >
+                <span>Drag Down to Cut the Cupcake 🧁</span>
+                <div className="pointer-events-none absolute inset-0 -translate-x-full rounded-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
+              </motion.button>
               <p className="text-xs text-rose-200/80 font-light animate-pulse">
-                Click & drag the knife downward through the cupcake
+                Click the button or drag the knife down to cut
               </p>
             </motion.div>
           )}
@@ -163,25 +169,22 @@ export function CakeOverlayUI({
           {stage === 'CELEBRATION' && (
             <motion.div
               key="btn-celebrate"
-              initial={{ opacity: 0, y: 25, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="pointer-events-auto glass-romantic-card mx-auto max-w-lg rounded-3xl p-5 sm:p-7 text-center shadow-2xl border border-rose-400/40"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="flex flex-col items-center"
             >
-              <h3 className="mb-2 font-serif text-xl sm:text-2xl font-bold text-cream-50 text-glow">
-                A Delicious Cupcake Slice Just For You! ❤️
-              </h3>
-              <p className="mb-5 text-xs sm:text-sm font-light text-rose-100/90 leading-relaxed">
-                May this year be as sweet, rich, and unforgettable as every magical moment we share together.
-              </p>
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
                 onClick={onNextStep}
-                className="btn-romantic group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3.5 text-base font-semibold text-white shadow-xl cursor-pointer"
+                className="pointer-events-auto btn-romantic group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full px-8 sm:px-10 py-3 sm:py-3.5 text-base sm:text-lg font-semibold text-white shadow-2xl cursor-pointer"
               >
-                <span>Continue Our Surprise 💕</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <span className="relative z-10 flex items-center gap-2">
+                  Continue Our Surprise 💕
+                  <ArrowRight className="h-4.5 w-4.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+                <div className="pointer-events-none absolute inset-0 -translate-x-full rounded-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
               </motion.button>
             </motion.div>
           )}

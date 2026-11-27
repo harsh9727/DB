@@ -15,14 +15,14 @@ export const BIRTHDAY_CONFIG: BirthdayExperienceConfig = {
     welcomeVideo: '/videos/birthday-background.mp4',
     romanticPhoto: '/images/romantic-photo-1.jpg',
     cupcakeImage: '/images/cupcake.png',
+    puzzlePhoto: '/images/puzzle-photo.jpg',
+    puzzleBackground: '/images/puzzle-background.jpg',
   },
 };
 
 /**
  * Step Architecture:
  * Extensible configuration of all journey steps.
- * For this phase, only 'password' (Step 1) and 'welcome' (Step 2) are active.
- * Future steps are pre-modeled for seamless plugging.
  */
 export const STEP_DEFINITIONS: StepDefinition[] = [
   {
@@ -46,26 +46,18 @@ export const STEP_DEFINITIONS: StepDefinition[] = [
     subtitle: 'Make a wish & cut the cupcake',
     isUnlocked: false,
   },
-  // Future architecture placeholders ready to be enabled:
-  // {
-  //   id: 'message',
-  //   index: 3,
-  //   title: 'Heartfelt Message',
-  //   subtitle: 'Words straight from the heart',
-  //   isUnlocked: false,
-  // },
-  // {
-  //   id: 'memories',
-  //   index: 3,
-  //   title: 'Precious Memories',
-  //   subtitle: 'Captured moments of joy',
-  //   isUnlocked: false,
-  // },
-  // {
-  //   id: 'letter',
-  //   index: 4,
-  //   title: 'Love Letter',
-  //   subtitle: 'A handwritten digital note',
-  //   isUnlocked: false,
-  // },
+  {
+    id: 'puzzle',
+    index: 3,
+    title: 'Memory Puzzle',
+    subtitle: 'Piece our memories together',
+    isUnlocked: false,
+  },
+  {
+    id: 'memories',
+    index: 4,
+    title: 'Our Beautiful Memories',
+    subtitle: 'Captured moments of joy',
+    isUnlocked: false,
+  },
 ];

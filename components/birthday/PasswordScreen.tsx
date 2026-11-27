@@ -169,12 +169,12 @@ export function PasswordScreen({ onSuccess }: PasswordScreenProps) {
               )}
             </AnimatePresence>
 
-            {/* Submit CTA Button with increased pixels */}
+            {/* Submit CTA Button with matching rounded-full radius */}
             <motion.button
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="btn-romantic group relative flex h-14 sm:h-16 w-full items-center justify-center gap-2.5 overflow-hidden rounded-2xl text-base sm:text-lg font-bold text-white shadow-xl cursor-pointer"
+              className="btn-romantic group relative flex h-14 sm:h-16 w-full items-center justify-center gap-2.5 overflow-hidden rounded-full text-base sm:text-lg font-bold text-white shadow-xl cursor-pointer"
             >
               <span className="relative z-10 flex items-center gap-2.5">
                 Unlock My Surprise

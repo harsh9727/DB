@@ -2,8 +2,9 @@ export type StepId =
   | 'password' 
   | 'welcome' 
   | 'cake'
+  | 'puzzle'
+  | 'memories'
   | 'message' 
-  | 'memories' 
   | 'letter' 
   | 'timeline' 
   | 'surprise';
@@ -29,5 +30,7 @@ export interface BirthdayExperienceConfig {
     welcomeVideo?: string;
     romanticPhoto?: string;
     cupcakeImage?: string;
+    puzzlePhoto?: string;
+    puzzleBackground?: string;
   };
 }

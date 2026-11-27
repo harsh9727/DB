@@ -114,6 +114,7 @@ export function CakeCuttingScreen({ onNext, hasNextStep = false }: CakeCuttingSc
         onLightCandles={handleLightCandles}
         onBlowCandles={handleBlowCandles}
         onPickUpKnife={handlePickUpKnife}
+        onCutCake={handleCutComplete}
         onNextStep={handleNextStep}
         hasNextStep={hasNextStep}
       />

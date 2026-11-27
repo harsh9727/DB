@@ -8,6 +8,9 @@ import { FloatingHearts } from './FloatingHearts';
 import { PasswordScreen } from './PasswordScreen';
 import { WelcomeScreen } from './WelcomeScreen';
 import { CakeCuttingScreen } from './cake/CakeCuttingScreen';
+import { PuzzleGame } from './puzzle/PuzzleGame';
+import { MemoriesScreen } from './memories/MemoriesScreen';
+import { BIRTHDAY_CONFIG } from './config';
 
 export function BirthdayExperience() {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -73,6 +76,22 @@ export function BirthdayExperience() {
 
         {currentStep.id === 'cake' && (
           <CakeCuttingScreen
+            onNext={handleNext}
+            hasNextStep={currentStepIndex < STEP_DEFINITIONS.length - 1}
+          />
+        )}
+
+        {currentStep.id === 'puzzle' && (
+          <PuzzleGame
+            photoUrl={BIRTHDAY_CONFIG.media.puzzlePhoto}
+            backgroundUrl={BIRTHDAY_CONFIG.media.puzzleBackground}
+            onNext={handleNext}
+            hasNextStep={currentStepIndex < STEP_DEFINITIONS.length - 1}
+          />
+        )}
+
+        {currentStep.id === 'memories' && (
+          <MemoriesScreen
             onNext={handleNext}
             hasNextStep={currentStepIndex < STEP_DEFINITIONS.length - 1}
           />
