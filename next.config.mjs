@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     unoptimized: true, // ensures optimal local file display without external remote patterns
   },
+  experimental: {
+    webpackBuildWorker: false,
+  },
 };
 
 export default nextConfig;
