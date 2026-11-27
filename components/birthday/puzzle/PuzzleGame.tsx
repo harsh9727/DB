@@ -71,7 +71,7 @@ export function PuzzleGame({
     setIsPeeking(false);
   }, []);
 
-  // Check completion whenever slots change
+  // Check completion count
   const completedCount = boardSlots.filter((slot) => slot.placedPieceId !== null).length;
 
   // Handle successful piece placement
@@ -160,7 +160,6 @@ export function PuzzleGame({
           e.clientY >= boardRect.top &&
           e.clientY <= boardRect.bottom
         ) {
-          // Inside board: find specific slot
           const slotElements = boardRef.current.querySelectorAll('[data-slot-index]');
           let foundSlot: number | null = null;
 
@@ -191,7 +190,6 @@ export function PuzzleGame({
       if (hoveredSlotIndex !== null) {
         placePieceIntoSlot(draggedPieceId, hoveredSlotIndex);
       } else {
-        // Released outside: play mismatch if it was dragged onto wrong area
         setSelectedPieceId(null);
       }
 
@@ -219,7 +217,7 @@ export function PuzzleGame({
 
   const handleTrayPieceClick = (pieceId: number) => {
     if (selectedPieceId === pieceId) {
-      setSelectedPieceId(null); // toggle off
+      setSelectedPieceId(null);
     } else {
       setSelectedPieceId(pieceId);
     }
@@ -255,7 +253,7 @@ export function PuzzleGame({
 
   // 2. Active Puzzle Game Screen
   return (
-    <div className="relative flex h-full w-full flex-col justify-between overflow-hidden px-4 py-4 sm:px-6 sm:py-6 select-none">
+    <div className="relative flex h-full w-full flex-col justify-between overflow-hidden px-3 py-3 sm:px-6 sm:py-5 select-none">
       {/* Background with Ambient Romantic Glow */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <Image
@@ -270,7 +268,7 @@ export function PuzzleGame({
       </div>
 
       {/* Top Header Section */}
-      <div className="relative z-10 flex flex-col items-center pt-8 sm:pt-10 text-center">
+      <div className="relative z-10 flex flex-col items-center pt-8 sm:pt-9 text-center">
         <motion.h2
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -283,7 +281,7 @@ export function PuzzleGame({
         </p>
       </div>
 
-      {/* Center 3x3 Puzzle Board */}
+      {/* Center 3x3 Puzzle Board (Gift Box Theme) */}
       <div className="relative z-10 my-auto flex flex-col items-center justify-center">
         <PuzzleBoard
           ref={boardRef}
@@ -303,9 +301,9 @@ export function PuzzleGame({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               onClick={() => setIsPeeking(false)}
-              className="absolute z-30 flex flex-col items-center justify-center rounded-2xl bg-burgundy-950/90 p-3 shadow-2xl border border-champagne-gold/60 backdrop-blur-md cursor-pointer"
+              className="absolute z-40 flex flex-col items-center justify-center rounded-2xl bg-burgundy-950/95 p-3 shadow-2xl border-2 border-champagne-gold/70 backdrop-blur-md cursor-pointer"
             >
-              <div className="relative h-48 w-48 sm:h-56 sm:w-56 overflow-hidden rounded-xl">
+              <div className="relative h-44 w-56 sm:h-56 sm:w-72 overflow-hidden rounded-xl border border-white/20">
                 <Image src={photoUrl} alt="Original Reference" fill className="object-cover" />
               </div>
               <span className="text-[11px] text-rose-200/80 mt-2">Tap anywhere to close peek</span>
@@ -314,10 +312,10 @@ export function PuzzleGame({
         </AnimatePresence>
       </div>
 
-      {/* Bottom Shuffled Pieces Tray & Progress */}
-      <div className="relative z-10 flex flex-col items-center pb-3 sm:pb-5 gap-2.5">
+      {/* Bottom Shuffled Pieces Tray & Progress (NO Scrollbar, clean 2-row wrapped grid) */}
+      <div className="relative z-10 flex flex-col items-center pb-2 sm:pb-4 gap-2">
         {/* Shuffled Pieces Tray */}
-        <div className="flex w-full max-w-md items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto rounded-2xl p-2 sm:p-2.5 glass-romantic border border-rose-400/30 shadow-xl min-h-[64px] sm:min-h-[72px]">
+        <div className="flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 max-w-md w-full rounded-2xl p-2 sm:p-2.5 glass-romantic border border-rose-300/35 shadow-xl min-h-[58px] sm:min-h-[68px]">
           {trayPieceIds.length > 0 ? (
             trayPieceIds.map((id) => (
               <PuzzlePiece
@@ -328,11 +326,11 @@ export function PuzzleGame({
                 isSelected={selectedPieceId === id}
                 onPointerDown={(e) => handlePointerDownPiece(e, id)}
                 onClick={() => handleTrayPieceClick(id)}
-                className="h-12 w-12 sm:h-14 sm:w-14 aspect-square flex-shrink-0"
+                className="h-11 w-14 sm:h-12 sm:w-16 aspect-[4/3] flex-shrink-0"
               />
             ))
           ) : (
-            <div className="flex items-center gap-2 py-1 text-xs text-rose-200/70 italic">
+            <div className="flex items-center gap-2 py-1 text-xs text-rose-200/80 italic">
               <span>All pieces have found their place! ✨</span>
             </div>
           )}
@@ -364,7 +362,7 @@ export function PuzzleGame({
             piece={pieces[draggedPieceId]}
             photoUrl={photoUrl}
             isDragging={true}
-            className="h-20 w-20 sm:h-24 sm:w-24 aspect-square shadow-2xl ring-2 ring-rose-400 scale-110"
+            className="h-16 w-20 sm:h-20 sm:w-24 aspect-[4/3] shadow-2xl ring-2 ring-rose-400 scale-110"
           />
         </div>
       )}
